@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+int sequence[] = {1, 2, 3, 5, 4};
+bool check(int c);
+
+int main()
+{
+    bool flag = false;
+    for (int c = 0; c < sizeof(sequence) / sizeof(sequence[0]); c++)
+    {
+
+        if (check(c))
+        {
+            flag = true;
+        }
+    }
+    cout << flag;
+}
+bool check(int c)
+{
+    int cond = sizeof(sequence) / sizeof(sequence[0]) - 1;
+    for (int i = 0; i < cond; i++)
+    {
+        if (c == i)
+        {
+            continue;
+        }
+
+        else if (i + 1 == c)
+        {
+            if (c == cond)
+            {
+                return true;
+            }
+            else
+            {
+                if (sequence[i] >= sequence[i + 2])
+                {
+                    return false;
+                }
+            }
+        }
+        else
+        {
+            if (sequence[i] >= sequence[i + 1])
+            {
+                return false;
+            }
+        }
+    }
+    return true;
+}
